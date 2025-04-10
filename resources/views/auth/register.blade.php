@@ -39,16 +39,6 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <!-- Campo de Rol -->
-        <div>
-            <label for="role" class="block text-sm font-medium text-white">Rol</label>
-            <select name="role" id="role"
-                class="mt-1 block w-full rounded-md bg-gray-900 border-gray-700 text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                <option value="Funcionario" selected>Funcionario</option>
-                <option value="Supervisor">Supervisor</option>
-                <option value="Administrador">Administrador</option>
-            </select>
-        </div>
 
 
         <div class="flex items-center justify-end mt-4">
