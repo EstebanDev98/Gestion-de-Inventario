@@ -46,11 +46,11 @@
                                             <td>{{ $usuario->created_at->format('d/m/Y H:i') }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a href="{{ route('admin.user.view.update', $usuario->id) }}"
+                                                    <a href="{{ route('admin.users.edit', $usuario->id) }}"
                                                        class="btn btn-warning">
                                                         Editar
                                                     </a>
-                                                    <form action="{{ route('admin.user.delete', $usuario->id) }}"
+                                                    <form action="{{ route('admin.users.destroy', $usuario->id) }}"
                                                           method="POST" class="d-inline">
                                                         @csrf
                                                         @method('DELETE')
