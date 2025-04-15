@@ -39,8 +39,8 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
                ->name('admin.users.edit');
      
           // 4. Procesar la actualización
-          Route::put('admin/users/{id}', [UserController::class, 'updateUser'])
-               ->name('admin.users.update');
+          Route::put('admin/users/{id}/edit', [UserController::class, 'updateUser'])
+               ->name('admin.users.edit');
      
           // 5. Borrar usuario
           Route::delete('admin/users/{id}', [UserController::class, 'destroyUser'])

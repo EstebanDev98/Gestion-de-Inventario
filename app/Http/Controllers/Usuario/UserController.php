@@ -50,7 +50,7 @@ class UserController extends Controller
         $data = $request->validate([
             'name'  => 'required|string|max:255',
             'email' => ['required','email', Rule::unique('users','email')->ignore($usuario->id)],
-            'role'  => ['required', Rule::in(['funcionario','supervisor','administrador'])],
+            'role'  => ['required', Rule::in(['Funcionario','Supervisor','Administrador'])],
             // Si quieres permitir cambiar contraseña:
             'password' => 'nullable|string|min:6|confirmed',
         ]);
@@ -66,7 +66,7 @@ class UserController extends Controller
         $usuario->save();
 
         return redirect()
-               ->route('admin.users.index')
+               ->route('dashboard')
                ->with('success', 'Usuario actualizado correctamente.');
     }
 
