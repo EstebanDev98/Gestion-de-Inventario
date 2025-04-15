@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <form  class="form-control p-6 w-25 m-auto mt-4" action="{{ route('admin.user.update', $usuario->id) }}" method="POST">
+    <form  class="form-control p-6 w-25 m-auto mt-4" action="{{ route('admin.users.edit', $usuario->id) }}" method="POST">
         @csrf
         @method('PUT')
         <p class="titulo-dashboard">Actualizacion de usuario</p>
