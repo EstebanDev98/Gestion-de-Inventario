@@ -11,9 +11,9 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/dashboard', function () {
-        $user = auth()->user();
+        $usuario = auth()->user();
         // Normalizamos a minúsculas
-        $role = strtolower($user->role);
+        $role = strtolower($usuario->role);
 
         if ($role === 'administrador') {
             $usuarios = User::orderBy('created_at', 'desc')->get();

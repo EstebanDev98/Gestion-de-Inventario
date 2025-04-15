@@ -2,3 +2,4 @@ PARA CORRER EN EL EQUIPO:
 * npm run dev
 * npm install (una sola vez)
 * php artisan serve
+php artisan make:migration create_users_table --create=users
