@@ -158,13 +158,13 @@
                                                        text-white shadow-sm
                                                        focus:border-indigo-500
                                                        focus:ring-indigo-500 sm:text-sm">
-                                                <option value="funcionario" selected>
+                                                <option value="Funcionario" selected>
                                                     Funcionario
                                                 </option>
-                                                <option value="supervisor">
+                                                <option value="Supervisor">
                                                     Supervisor
                                                 </option>
-                                                <option value="administrador">
+                                                <option value="Administrador">
                                                     Administrador
                                                 </option>
                                             </select>
