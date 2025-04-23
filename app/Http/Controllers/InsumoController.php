@@ -53,5 +53,40 @@ class InsumoController extends Controller
         return redirect()->route('insumos.index');
     }
 
+    public function edit($id)
+    {
+        $insumo = Insumo::findOrFail($id);
+        $estados = Estado::all(); // Para el select del estado
+        return view('insumos.edit', compact('insumo', 'estados'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $insumo = Insumo::findOrFail($id);
+
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'codigo_referencia' => 'required|string|max:100|unique:insumos,codigo_referencia,' . $insumo->id,
+            'descripcion' => 'nullable|string',
+            'unidad_medida' => 'required|string|max:100',
+            'cantidad' => 'required|numeric|min:0',
+            'ubicacion' => 'required|string|max:255',
+            'estado_id' => 'required|exists:estados,id',
+        ]);
+
+        $insumo->update($request->all());
+
+        return redirect()->route('insumos.index')->with('success', 'Insumo actualizado correctamente');
+    }
+
+    public function destroy($id)
+    {
+        $insumo = Insumo::findOrFail($id);
+        $insumo->delete();
+
+        return redirect()->route('insumos.index')->with('success', 'Insumo eliminado correctamente');
+    }
+
+
 
 }

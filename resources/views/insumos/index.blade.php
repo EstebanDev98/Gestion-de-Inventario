@@ -16,10 +16,12 @@
                     Buscar
                 </button>
             </form>
-            <a href="{{ route('insumos.create') }}"
-               class="ml-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
-                Crear Insumo
-            </a>
+            @if(auth()->user()->role === 'Administrador')
+                <a href="{{ route('insumos.create') }}"
+                class="ml-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
+                    Crear Insumo
+                </a>
+            @endif
         </div>
 
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
@@ -46,12 +48,14 @@
                                 <td class="px-4 py-2">{{ $insumo->estado->nombre }}</td>
                                 <td class="px-4 py-2">{{ $insumo->ubicacion }}</td>
                                 <td class="px-4 py-2">
-                                    <a href="#" class="text-yellow-500 hover:underline mr-2">Editar</a>
-                                    <form action="#" method="POST" class="inline">
+                                @if(auth()->user()->role === 'Administrador')
+                                    <a href="{{ route('insumos.edit', $insumo->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <form action="{{ route('insumos.destroy', $insumo->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este insumo?');" style="display:inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:underline">Eliminar</button>
+                                        <x-danger-button>{{ __('Eliminar') }}</x-danger-button>
                                     </form>
+                                @endif                                                                    
                                 </td>
                             </tr>
                         @endforeach

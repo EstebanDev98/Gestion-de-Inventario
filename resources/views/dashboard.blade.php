@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Overview') }}
         </h2>
     </x-slot>
 
@@ -17,6 +17,7 @@
                                 Nuevo usuario
                             </button>
                         </div>
+
 
                         @if(session('success'))
                             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
@@ -153,4 +154,5 @@
             @endswitch
         </div>
     </div>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </x-app-layout>
