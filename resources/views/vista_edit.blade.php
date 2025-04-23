@@ -13,6 +13,14 @@
 
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Actualización de usuario</h3>
 
+    <div class="py-8">
+        <div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+            <form action="{{ route('admin.users.edit', $usuario->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-6">Actualización de usuario</h3>
+
                 <!-- Name -->
                 <div class="mb-4">
                     <x-input-label for="name" :value="__('Name')" />

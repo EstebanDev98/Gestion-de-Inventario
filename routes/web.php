@@ -13,7 +13,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
      Route::resource('insumos', InsumoController::class);
- });
+});
  
 
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
@@ -52,7 +52,10 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
           // 5. Borrar usuario
           Route::delete('admin/users/{id}', [UserController::class, 'destroyUser'])
                ->name('admin.users.destroy');
-     
+
+
+          Route::resource('insumos', InsumoController::class)->except(['index', 'show']);
+
      });
 
     // Perfil
