@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InsumoController;
 use App\Models\User;
 
 Route::get('/', function () {
@@ -47,6 +48,36 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
                ->name('admin.users.destroy');
      
      });
+
+// Grupo de rutas para el rol de funcionario
+Route::prefix('funcionario')
+->middleware('is_funcionario')
+->name('funcionario.')
+->group(function () {
+    // Dashboard y listado
+    Route::get('dashboard', [InsumoController::class, 'index'])
+         ->name('dashboard');
+
+    // Formulario de creación
+    Route::get('insumos/create', [InsumoController::class, 'create'])
+         ->name('insumos.create');
+
+    // Guardar nuevo préstamo
+    Route::post('insumos', [InsumoController::class, 'store'])
+         ->name('insumos.store');
+
+    // Formulario de edición
+    Route::get('insumos/{insumo}/edit', [InsumoController::class, 'edit'])
+         ->name('insumos.edit');
+
+    // Procesar actualización
+    Route::put('insumos/{insumo}', [InsumoController::class, 'update'])
+         ->name('insumos.update');
+
+    // Eliminar préstamo
+    Route::delete('insumos/{insumo}', [InsumoController::class, 'destroy'])
+         ->name('insumos.destroy');
+});
 
     // Perfil
     Route::get('/profile', [ProfileController::class, 'edit'])
