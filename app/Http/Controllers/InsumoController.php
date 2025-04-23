@@ -10,19 +10,20 @@ class InsumoController extends Controller
 {
     public function index(Request $request)
     {
-        $busqueda = $request->input('buscar'); 
-
+        $busqueda = $request->input('buscar');
+    
         $insumos = Insumo::with('estado')
             ->when($busqueda, function ($query, $busqueda) {
-                $query->where('nombre', 'ilike', "%busqueda%")
-                      ->orWhere('codigo_referencia', 'ilike', "%busqueda%");
+                $query->where('nombre', 'like', "%{$busqueda}%")
+                      ->orWhere('codigo_referencia', 'like', "%{$busqueda}%");
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
-        
+            ->paginate(5)
+            ->appends(['buscar' => $busqueda]);
+    
         return view('insumos.index', compact('insumos', 'busqueda'));
-        
-    }   
+    }
+   
 
     public function create()
     {

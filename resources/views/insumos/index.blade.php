@@ -7,15 +7,21 @@
 
     <div class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div class="flex justify-between items-center mb-4">
-            <form method="GET" action="{{ route('insumos.index') }}" class="flex w-full max-w-md">
-                <input type="text" name="buscar" placeholder="Buscar por nombre o código"
-                       value="{{ $busqueda }}"
-                       class="w-full px-4 py-2 rounded-l-md border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
-                <button type="submit"
-                        class="bg-indigo-600 text-white px-4 py-2 rounded-r-md hover:bg-indigo-700 transition">
-                    Buscar
-                </button>
+            <form action="{{ route('insumos.index') }}" method="GET" class="flex space-x-2">
+                <x-text-input
+                    name="buscar"
+                    type="text"
+                    placeholder="Buscar por nombre o código…"
+                    value="{{ old('buscar', $busqueda) }}"
+                    class="block w-full"
+                />
+                <x-primary-button>Buscar</x-primary-button>
             </form>
+        
+            @if($busqueda)
+                <a href="{{ route('insumos.index') }}" class="text-sm text-gray-600 hover:underline"><x-danger-button>Limpiar Busqueda</x-danger-button>
+                </a>
+            @endif
             @if(auth()->user()->role === 'Administrador')
                 <a href="{{ route('insumos.create') }}"
                 class="ml-4 inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">
@@ -49,7 +55,7 @@
                                 <td class="px-4 py-2">{{ $insumo->ubicacion }}</td>
                                 <td class="px-4 py-2">
                                 @if(auth()->user()->role === 'Administrador')
-                                    <a href="{{ route('insumos.edit', $insumo->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                                    <a href="{{ route('insumos.edit', $insumo->id) }}" class="btn btn-sm btn-warning"><x-primary-button>{{ __('Editar') }}</x-primary-button></a>
                                     <form action="{{ route('insumos.destroy', $insumo->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este insumo?');" style="display:inline">
                                         @csrf
                                         @method('DELETE')

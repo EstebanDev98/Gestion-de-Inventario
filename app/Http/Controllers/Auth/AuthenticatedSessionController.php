@@ -26,26 +26,10 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
+
         $request->session()->regenerate();
 
-        // Redirigir según rol
-        $user = Auth::user();
-        $role = strtolower($user->role);
-
-        switch ($role) {
-            case 'administrador':
-                return redirect()->route('dashboard');
-
-            case 'supervisor':
-                return redirect()->route('supervisor.dashboard');
-
-            case 'funcionario':
-                return redirect()->route('funcionario.dashboard');
-
-            default:
-                Auth::logout();
-                abort(403, 'Rol no válido para el acceso.');
-        }
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**
