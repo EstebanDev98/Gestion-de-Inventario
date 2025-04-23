@@ -4,10 +4,17 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Insumo;
+use App\Http\Controllers\InsumoController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware(['auth'])->group(function () {
+     Route::resource('insumos', InsumoController::class);
+ });
+ 
 
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/dashboard', function () {
