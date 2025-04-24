@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\Insumos\InsumosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
-use App\Http\Controllers\Insumos\InsumosController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Insumo;
