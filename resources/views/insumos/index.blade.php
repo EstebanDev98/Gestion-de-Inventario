@@ -101,7 +101,7 @@
             @endif
             
              <!-- Fondo oscuro -->
-             <div id="modalPrestar" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+             <div id="modalPrestar" class="fixed inset-0 bg-black bg-opacity-50 items-center justify-center z-50 hidden">
                 <!-- Contenido del modal -->
                 <div class="bg-white w-full max-w-xl rounded-lg shadow-lg p-6 relative">
                     <!-- Cerrar -->
