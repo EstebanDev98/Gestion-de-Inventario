@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
+use App\Http\Controllers\Insumos\InsumosController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Models\Insumo;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,7 +20,12 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
         if ($role === 'administrador') {
             $usuarios = User::orderBy('created_at', 'desc')->get();
             return view('dashboard', compact('usuarios', 'role'));
-        }
+          }
+          elseif($role === 'funcionario'){
+               $insumos = Insumo::all();
+               return view('dashboard', compact('insumos', 'role'));
+          }
+
 
         return view('dashboard', compact('role'));
     })->name('dashboard');
@@ -47,6 +54,13 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
                ->name('admin.users.destroy');
      
      });
+
+     //Rutas protegidas para guardar el prestamo de los insumos
+     Route::middleware(['auth','is_funcionario'])->group(function(){
+          //Ruta registrar insumos prestados
+          Route::post('/registrar/insumo', [InsumosController::class, 'registrar_insumos'])->name('registrar.insumos'); 
+     });
+     
 
     // Perfil
     Route::get('/profile', [ProfileController::class, 'edit'])
