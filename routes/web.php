@@ -1,14 +1,19 @@
 <?php
-
-use App\Http\Controllers\Insumos\InsumosController;
+use App\Http\Controllers\InsumoController;
+use App\Http\Controllers\PrestarInsumosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Insumo;
+use Spatie\Permission\Contracts\Role;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function(){
+     return view('welcome');
+});
+
+Route::middleware(['auth'])->group(function () {
+     Route::resource('insumos', InsumoController::class);
 });
 
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
@@ -52,16 +57,18 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
           // 5. Borrar usuario
           Route::delete('admin/users/{id}', [UserController::class, 'destroyUser'])
                ->name('admin.users.destroy');
-     
+
+
+          Route::resource('insumos', InsumoController::class)->except(['index', 'show']);
+
      });
 
      //Rutas protegidas para guardar el prestamo de los insumos
      Route::middleware(['auth','is_funcionario'])->group(function(){
           //Ruta registrar insumos prestados
-          Route::post('/registrar/insumo', [InsumosController::class, 'registrar_insumos'])->name('registrar.insumos'); 
+          Route::post('/registrar/insumo', [PrestarInsumosController::class, 'prestar_insumos'])->name('prestar.insumos'); 
      });
      
-
     // Perfil
     Route::get('/profile', [ProfileController::class, 'edit'])
          ->name('profile.edit');

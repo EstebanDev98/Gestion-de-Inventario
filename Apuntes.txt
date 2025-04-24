@@ -1,5 +1,17 @@
 PARA CORRER EN EL EQUIPO: 
-* npm run dev
-* npm install (una sola vez)
+* npm run dev // Compila CSS y Javascript
+* npm install (una sola vez) // Instalar dependencias de Node
+* composer require laravel/breeze --dev // Instalar Breeze con TailwindCSS
+* php artisan breeze:install // Instalar sistema de autenticacion (escoger opcion blade) (el que crea el proyecto lo ejecut, los demas no tienen la necesidad de hacerlo)
 * php artisan serve
-php artisan make:migration create_users_table --create=users
+
+
+
+
+
+
+
+
+
+----------------------------------Pruebas-----------------------------------------
+php artisan make:migration create_users_table --create=users // Como crear una tabla

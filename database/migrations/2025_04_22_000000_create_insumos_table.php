@@ -6,29 +6,22 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+    public function up()
     {
         Schema::create('insumos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('codigo');
+            $table->string('solicitante');
             $table->integer('cantidad');
-            $table->string('unidad');
-            $table->string('estado');
-            $table->string('ubicacion');
+            $table->date('fecha_prestamo');
+            $table->date('fecha_devolucion')->nullable();
+            $table->enum('estado', ['Activo', 'Prestado','Devuelto','Agotado']);
             $table->timestamps();
-            
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('insumos');
+        Schema::dropIfExists('tabla1insumos');
     }
 };

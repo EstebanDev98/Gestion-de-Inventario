@@ -22,6 +22,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class,
             // otros seeders...
+            InsumoSeeder::class,
+        ]);
+
+        $this->call([
+            EstadoSeeder::class,
         ]);
     }
 }

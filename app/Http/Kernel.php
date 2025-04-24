@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'is_funcionario' => \App\Http\Middleware\IsFuncionario::class,
         'prevent-back-history' => \App\Http\Middleware\PreventBackHistory::class,
+        'is_funcionario' => \App\Http\Middleware\IsFuncionario::class,
 
     ];
 }
