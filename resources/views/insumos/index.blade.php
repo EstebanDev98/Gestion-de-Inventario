@@ -89,9 +89,7 @@
                         <x-primary-button id="btn-prestar">Prestar</x-primary-button>
                     </div>
                 @endif
-                <!-- <div class="flex justify-center">
-                    <x-primary-button id="btn-prestar">Prestar</x-primary-button>
-                </div> -->
+                
 
                 <div class="mt-4">
                     {{ $insumos->withQueryString()->links() }}

@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
         // Usuario administrador
         User::create([
             'name'     => 'Admin Principal',
+            'apellido'     => 'Apellido Admin Principal',
             'email'    => 'admin@tuapp.test',
             'password' => Hash::make('password'), 
             'role'     => 'Administrador',
@@ -25,6 +26,7 @@ class UsersTableSeeder extends Seeder
         // Usuario supervisor
         User::create([
             'name'     => 'Supervisor Prueba',
+            'apellido'     => 'Apellido Supervisor Prueba',
             'email'    => 'supervisor@tuapp.test',
             'password' => Hash::make('password'),
             'role'     => 'Supervisor',
@@ -33,6 +35,7 @@ class UsersTableSeeder extends Seeder
         // Usuario funcionario
         User::create([
             'name'     => 'Funcionario Prueba',
+            'apellido'     => 'Apellido Funcionario Prueba',
             'email'    => 'funcionario@tuapp.test',
             'password' => Hash::make('password'),
             'role'     => 'Funcionario',

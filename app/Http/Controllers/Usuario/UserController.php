@@ -18,6 +18,7 @@ class UserController extends Controller
     public function storeuser(Request $request){
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'role'=> ['required', 'string', 'in:Funcionario,Supervisor,Administrador'],
@@ -25,6 +26,7 @@ class UserController extends Controller
         ]);
         $usuario = User::create([
             'name' => $request->name,
+            'apellido' => $request->apellido,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => $request->role,

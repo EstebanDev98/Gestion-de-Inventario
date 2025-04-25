@@ -28,6 +28,7 @@
                                 <thead class="bg-gray-100 dark:bg-gray-700">
                                     <tr>
                                         <th class="px-4 py-2 text-left">Nombre</th>
+                                        <th class="px-4 py-2 text-left">Apellido</th>
                                         <th class="px-4 py-2 text-left">Email</th>
                                         <th class="px-4 py-2 text-left">Rol</th>
                                         <th class="px-4 py-2 text-left">Fecha de creación</th>
@@ -38,6 +39,7 @@
                                     @foreach ($usuarios as $usuario)
                                         <tr class="border-t dark:border-gray-700">
                                             <td class="px-4 py-2">{{ $usuario->name }}</td>
+                                            <td class="px-4 py-2">{{ $usuario->apellido }}</td>
                                             <td class="px-4 py-2">{{ $usuario->email }}</td>
                                             <td class="px-4 py-2">{{ ucfirst($usuario->role) }}</td>
                                             <td class="px-4 py-2">{{ $usuario->created_at->format('d/m/Y H:i') }}</td>
@@ -79,6 +81,12 @@
                                         <x-input-label for="name" :value="__('Name')" />
                                         <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                    </div>
+                                    <!-- Apellido -->
+                                    <div class="mb-4">
+                                        <x-input-label for="name" :value="__('Apellido')" />
+                                        <x-text-input id="name" class="block mt-1 w-full" type="text" name="apellido" :value="old('apellido')" required autofocus />
+                                        <x-input-error :messages="$errors->get('apellido')" class="mt-2" />
                                     </div>
 
                                     <!-- Email -->

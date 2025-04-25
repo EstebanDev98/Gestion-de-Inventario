@@ -14,8 +14,8 @@ class InsumoController extends Controller
     
         $insumos = Insumo::with('estado')
             ->when($busqueda, function ($query, $busqueda) {
-                $query->where('nombre', 'like', "%{$busqueda}%");
-                    //   ->orWhere('codigo_referencia', 'like', "%{$busqueda}%");
+                $query->where('nombre', 'like', "%{$busqueda}%")
+                       ->orWhere('codigo_referencia', 'like', "%{$busqueda}%");
             })
             ->orderBy('created_at', 'desc')
             ->paginate(5)
