@@ -10,22 +10,22 @@ class Insumo extends Model
 {
     use HasFactory;
 
+     protected $fillable = [
+        'nombre',
+        'codigo_referencia',
+        'descripcion',
+        'unidad_medida',
+        'cantidad',
+        'ubicacion',
+        'estado_id',
+     ];
     // protected $fillable = [
     //     'nombre',
-    //     'codigo_referencia',
-    //     'descripcion',
-    //     'unidad_medida',
-    //     'cantidad',
-    //     'ubicacion',
-    //     'estado_id',
+    //     'solicitante',
+    //     'fecha_prestamo',
+    //     'fecha_devolucion',
+    //     'estado',
     // ];
-    protected $fillable = [
-        'nombre',
-        'solicitante',
-        'fecha_prestamo',
-        'fecha_devolucion',
-        'estado',
-    ];
     
 
     public function estado()

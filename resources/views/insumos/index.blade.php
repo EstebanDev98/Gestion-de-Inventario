@@ -68,7 +68,7 @@
                                 <td class="px-4 py-2">{{ $insumo->codigo_referencia }}</td>
                                 <td class="px-4 py-2">{{ $insumo->cantidad }}</td>
                                 <td class="px-4 py-2">{{ $insumo->unidad_medida }}</td>
-                                <td class="px-4 py-2">{{ $insumo->estado }}</td>
+                                <td class="px-4 py-2">{{ $insumo->estado->nombre }}</td>
                                 <td class="px-4 py-2">{{ $insumo->ubicacion }}</td>
                                 <td class="px-4 py-2">
                                 @if(auth()->user()->role === 'Administrador')
