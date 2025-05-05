@@ -16,6 +16,12 @@
             </div>
 
             <div>
+                <x-input-label for="marca" :value="__('Marca')" />
+                <x-text-input id="marca" name="marca" type="text" class="mt-1 block w-full" required />
+                <x-input-error :messages="$errors->get('marca')" class="mt-2" />
+            </div>
+
+            <div>
                 <x-input-label for="codigo_referencia" :value="__('Código de Referencia')" />
                 <x-text-input id="codigo_referencia" name="codigo_referencia" type="text" class="mt-1 block w-full" required />
                 <x-input-error :messages="$errors->get('codigo_referencia')" class="mt-2" />

@@ -41,6 +41,7 @@
                                     <th class="px-4 py-2"></th>
                             @endif
                             <th class="px-4 py-2">Nombre</th>
+                            <th class="px-4 py-2">Marca</th>
                             <th class="px-4 py-2">Código</th>
                             <th class="px-4 py-2">Cantidad</th>
                             <th class="px-4 py-2">Unidad</th>
@@ -65,6 +66,7 @@
                                 @endif
                                 
                                 <td class="px-4 py-2">{{ $insumo->nombre }}</td>
+                                <td class="px-4 py-2">{{ $insumo->marca }}</td>
                                 <td class="px-4 py-2">{{ $insumo->codigo_referencia }}</td>
                                 <td class="px-4 py-2">{{ $insumo->cantidad }}</td>
                                 <td class="px-4 py-2">{{ $insumo->unidad_medida }}</td>

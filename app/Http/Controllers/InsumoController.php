@@ -35,6 +35,7 @@ class InsumoController extends Controller
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
+            'marca' => 'required|string|max:255',
             'codigo_referencia' => 'required|string|max:100|unique:insumos',
             'descripcion' => 'nullable|string',
             'unidad_medida' => 'required|string|max:100',

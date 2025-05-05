@@ -12,6 +12,7 @@ class Insumo extends Model
 
      protected $fillable = [
         'nombre',
+        'marca',
         'codigo_referencia',
         'descripcion',
         'unidad_medida',
