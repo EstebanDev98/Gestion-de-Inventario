@@ -28,5 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             EstadoSeeder::class,
         ]);
+
+        $this->call([
+            EstadoEspacioSeeder::class,
+        ]);
     }
 }

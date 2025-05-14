@@ -1,21 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Overview') }}
+            {{ __('Gestión de Usuarios') }}
         </h2>
     </x-slot>
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @switch($role)
-                @case('administrador')
-                    <div class="bg-white dark:bg-gray-800 overflow-x-auto shadow-sm sm:rounded-lg p-6" x-data="{ open: false }">
-                        <div class="p-6 text-gray-900 dark:text-gray-100 dashboard">
-                            <p class="text-lg font-semibold mb-4">Gestiona tus usuarios</p>
-                            <button @click="open = true"
-                                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                                Nuevo usuario
-                            </button>
-                        </div>
+        <div class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-4">
+                
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                @switch($role)
+                    @case('administrador')
+                        <div class="bg-white dark:bg-gray-800 overflow-x-auto shadow-sm sm:rounded-lg p-6" x-data="{ open: false }">
+                            <div class="p-6 text-gray-900 dark:text-gray-100 dashboard">
+                                <button @click="open = true"
+                                    class="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded">
+                                    Nuevo usuario
+                                </button>
+                            </div>
 
 
                         @if(session('success'))
@@ -44,17 +46,12 @@
                                             <td class="px-4 py-2">{{ ucfirst($usuario->role) }}</td>
                                             <td class="px-4 py-2">{{ $usuario->created_at->format('d/m/Y H:i') }}</td>
                                             <td class="px-4 py-2 flex gap-2">
-                                                <a href="{{ route('admin.users.edit', $usuario->id) }}"
-                                                   class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">
-                                                    Editar
-                                                </a>
-                                                <form action="{{ route('admin.users.destroy', $usuario->id) }}" method="POST">
+                                                <a href="{{ route('admin.users.edit', $usuario->id) }}" class="btn btn-sm btn-warning"><x-primary-button>{{ __('Editar') }}</x-primary-button></a>
+
+                                                <form action="{{ route('admin.users.destroy', $usuario->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este insumo?');" style="display:inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                            class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">
-                                                        Borrar
-                                                    </button>
+                                                    <x-danger-button>{{ __('Eliminar') }}</x-danger-button>
                                                 </form>
                                             </td>
                                         </tr>

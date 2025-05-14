@@ -34,14 +34,15 @@ class InsumoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'codigo_referencia' => 'required|string|max:100|unique:insumos',
+            'nombre' => 'required|string|max:255|regex:/^[a-zA-Z\s]+$/|unique:insumos',
+            'codigo_referencia' => 'required|string|max:8|regex:/^[Ee]-[0-9]+$/|unique:insumos',
             'descripcion' => 'nullable|string',
             'unidad_medida' => 'required|string|max:100',
             'cantidad' => 'required|numeric|min:0',
             'ubicacion' => 'required|string|max:255',
             'estado_id' => 'required|exists:estados,id',
         ]);
+        
 
         Insumo::create($request->all());
 

@@ -10,10 +10,12 @@ class Prestamo extends Model
     use HasFactory;
     protected $fillable = [
         'insumos_id',
-        'nombre',
         'cantidad',
         'fecha_de_prestamo'
     ];
     public $timestamps = false;
+    public function insumo(){
+        return $this->belongsTo(Insumo::class);
+    }
 
 }

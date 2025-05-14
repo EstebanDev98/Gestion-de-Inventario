@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Insumos Disponibles') }}
+            {{ __('Gestión de Insumos') }}
         </h2>
     </x-slot>
 
@@ -31,6 +31,18 @@
         </div>
 
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg p-6">
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
             @if ($insumos->count())
                 <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm">
                     <thead class="bg-gray-100 dark:bg-gray-700">
@@ -112,11 +124,7 @@
                         <h2 class="text-xl font-bold mb-4">Confirmar Préstamo</h2>
                          <!-- Campo de fecha -->
                         <div class="mb-4">
-                            <label for="fecha_prestamo" class="block text-sm font-medium text-gray-700">Fecha del préstamo:</label>
-                            <input type="date" id="fecha_prestamo" name="fecha_prestamo"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500" required>
-                            </div>
-
+                            
                             <div id="lista-insumos-prestar" class="space-y-4">
                                 <!-- Aquí se insertarán dinámicamente los insumos -->
                             </div>
@@ -155,6 +163,8 @@
                                         listaInsumos.innerHTML += `
                                             <div>
                                                 <input type="hidden" name="insumos[${id}][id]" value="${id}">
+                                                <input type="date" name="fecha_prestamo"
+                                                    class="w-full mb-3 p-2 border rounded">
                                                 <input type="text" name="insumos[${id}][nombre]" value="${nombre}"
                                                     class="w-full mb-3 p-2 border  rounded" readonly>
                                                 <input type="number" name="insumos[${id}][cantidad]" 

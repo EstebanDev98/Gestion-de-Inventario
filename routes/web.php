@@ -1,11 +1,15 @@
 <?php
+
+use App\Http\Controllers\EspaciosController;
 use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\PrestarInsumosController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReservaEspacioController;
 use App\Http\Controllers\Usuario\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Insumo;
+use App\Models\ReservaEspacio;
 use Spatie\Permission\Contracts\Role;
 
 Route::get('/',function(){
@@ -14,6 +18,8 @@ Route::get('/',function(){
 
 Route::middleware(['auth'])->group(function () {
      Route::resource('insumos', InsumoController::class);
+     Route::resource('espacios', EspaciosController::class);
+     Route::resource('reserva-espacios', ReservaEspacioController::class);
 });
 
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
@@ -41,6 +47,7 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
           // 1. Mostrar el listado (o usar tu dashboard)
           Route::get('admin/users', [UserController::class, 'index'])
                ->name('admin.users.index');
+          
      
           // 2. Guardar nuevo usuario
           Route::post('admin/users/store', [UserController::class, 'storeUser'])
@@ -60,13 +67,16 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
 
 
           Route::resource('insumos', InsumoController::class)->except(['index', 'show']);
+          Route::resource('espacios', EspaciosController::class)->except(['index', 'show']);
+          Route::post('espacios/reservas/{id}',[EspaciosController::class, 'finalizarReserva'])->name('finalizar.reserva');
 
      });
 
      //Rutas protegidas para guardar el prestamo de los insumos
      Route::middleware(['auth','is_funcionario'])->group(function(){
           //Ruta registrar insumos prestados
-          Route::post('/registrar/insumo', [PrestarInsumosController::class, 'prestar_insumos'])->name('prestar.insumos'); 
+          Route::post('/registrar/insumo', [PrestarInsumosController::class, 'prestar_insumos'])->name('prestar.insumos');
+          Route::resource('reserva-espacios',ReservaEspacioController::class)->except(['index', 'show']);
      });
      
     // Perfil

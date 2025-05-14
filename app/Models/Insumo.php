@@ -32,6 +32,9 @@ class Insumo extends Model
     {
         return $this->belongsTo(Estado::class);
     }
+    public function prestamos(){
+        return $this->hasMany(Prestamo::class);
+    }
 }
 
 
