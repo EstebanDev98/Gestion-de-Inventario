@@ -3,6 +3,7 @@ use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\PrestarInsumosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
+use App\Http\Controllers\BandejaController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Insumo;
@@ -68,6 +69,14 @@ Route::middleware(['auth', 'prevent-back-history'])->group(function () {
           //Ruta registrar insumos prestados
           Route::post('/registrar/insumo', [PrestarInsumosController::class, 'prestar_insumos'])->name('prestar.insumos'); 
      });
+
+
+
+     Route::middleware(['auth'])
+          ->get('/bandeja', [BandejaController::class, 'index'])
+          ->name('bandeja.index');
+
+
      
     // Perfil
     Route::get('/profile', [ProfileController::class, 'edit'])
