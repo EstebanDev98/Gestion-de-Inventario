@@ -14,10 +14,6 @@ class Prestamo extends Model
         'fecha_de_prestamo'
     ];
     public $timestamps = false;
-    public function insumo(){
-        return $this->belongsTo(Insumo::class);
-    }
-
     public function insumo()
     {
         return $this->belongsTo(Insumo::class);
