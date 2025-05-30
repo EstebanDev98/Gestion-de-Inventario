@@ -3,6 +3,7 @@ use App\Http\Controllers\InsumoController;
 use App\Http\Controllers\PrestarInsumosController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Usuario\UserController;
+use App\Http\Controllers\Admin\ReporteController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Insumo;
@@ -16,6 +17,17 @@ Route::middleware(['auth'])->group(function () {
      Route::resource('insumos', InsumoController::class);
 });
 
+// ruta de admin para ver reportes
+Route::middleware(['auth'])->group(function () {
+     Route::get('/admin/reportes', [ReporteController::class, 'index'])->name('admin.reportes');
+ });
+
+// Ruta de admin para ver reportes
+/*
+Route::get('/reportes', function () {
+     return view('admin.reportes');
+})->middleware(['auth', 'is_admin'])->name('admin.reportes');
+*/
 Route::middleware(['auth', 'prevent-back-history'])->group(function () {
     Route::get('/dashboard', function () {
         $usuario = auth()->user();

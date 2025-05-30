@@ -11,13 +11,19 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"> 
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Dashboard') }}  <!-- enlace a la vista de dashboard -->
                     </x-nav-link>
                     <x-nav-link :href="route('insumos.index')" :active="request()->routeIs('insumos.*')">
-                        {{ __('Insumos') }}
+                        {{ __('Insumos') }} <!-- enlace a la vista de insumos -->
                     </x-nav-link>
+                    
+                    @if(Auth::check() && Auth::user()->role == 'Administrador')
+                        <x-nav-link :href="route('admin.reportes')" :active="request()->routeIs('reportes.*')">
+                            {{ __('Reportes') }} <!-- enlace a la vista de reportes -->
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

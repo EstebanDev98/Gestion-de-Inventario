@@ -16,4 +16,9 @@ class Prestamo extends Model
     ];
     public $timestamps = false;
 
+    public function insumo()
+    {
+        return $this->belongsTo(Insumo::class);
+    }
+
 }
