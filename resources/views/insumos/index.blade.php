@@ -5,15 +5,16 @@
         </h2>
     </x-slot>
 
-    <div class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <div class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ">
         <div class="flex justify-between items-center mb-4">
-            <form action="{{ route('insumos.index') }}" method="GET" class="flex space-x-2">
+            <form action="{{ route('insumos.index') }}" method="GET" class="flex space-x-4">
                 <x-text-input
                     name="buscar"
                     type="text"
-                    placeholder="Buscar por nombre o código…"
+                    placeholder="Buscar por nombre o código"
                     value="{{ old('buscar', $busqueda) }}"
-                    class="block w-full"
+                    class="w-80"
+                    autofocus       
                 />
                 <x-primary-button>Buscar</x-primary-button>
             </form>

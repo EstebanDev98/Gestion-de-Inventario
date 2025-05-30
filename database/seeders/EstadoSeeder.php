@@ -14,7 +14,8 @@ class EstadoSeeder extends Seeder
     public function run(): void
     {
         Estado::create(['nombre' => 'activo']);
-        Estado::create(['nombre' => 'préstado']);
+        Estado::create(['nombre' => 'en préstamo']);
         Estado::create(['nombre' => 'agotado']);
+        Estado::create(['nombre' => 'averiado']);
     }
 }

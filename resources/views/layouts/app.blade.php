@@ -13,6 +13,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200">
@@ -33,5 +34,12 @@
             </main>
         </div>
 
+
+        <!-- Scripts Alpine.js -->
+        <script src="//unpkg.com/alpinejs" defer></script>
+
+
+        <!-- Scripts de Livewire -->
+        @livewireScripts
     </body>
 </html>

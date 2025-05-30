@@ -18,4 +18,9 @@ class Prestamo extends Model
         return $this->belongsTo(Insumo::class);
     }
 
+    public function insumo()
+    {
+        return $this->belongsTo(Insumo::class);
+    }
+
 }
